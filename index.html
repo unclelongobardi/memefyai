@@ -12,17 +12,9 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      background: linear-gradient(120deg, #1e1e1e, #3a3a3a);
-      animation: backgroundMove 10s infinite;
-      background-size: 200% 200%;
+      background: #121212;
+      color: #ffffff;
       overflow-x: hidden;
-      color: white;
-    }
-
-    @keyframes backgroundMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
     }
 
     .container {
@@ -48,7 +40,7 @@
       margin: 20px;
       padding: 15px;
       border-radius: 10px;
-      background: rgba(255, 223, 186, 0.1);
+      background: rgba(255, 255, 255, 0.1);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
@@ -76,8 +68,8 @@
     }
 
     .disabled-button {
-      background: #555;
-      color: #aaa;
+      background: #ccc;
+      color: #666;
       cursor: not-allowed;
     }
 
@@ -95,7 +87,7 @@
     .social-buttons {
       margin-top: 10px;
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       gap: 10px;
       position: fixed;
       top: 10px;
@@ -105,63 +97,51 @@
     .social-buttons a {
       width: 40px;
       height: 40px;
-      display: inline-block;
-      background-size: cover;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ffffff;
       border-radius: 50%;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
-    .telegram {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg');
-      background-color: white;
-    }
-
-    .x {
-      background-image: url('https://abs.twimg.com/icons/apple-touch-icon-192x192.png');
-      background-color: white;
-    }
-
-    .gitbook {
-      background-image: url('https://i.ibb.co/YTq2QYB/document-icon.png');
-      background-color: white;
+    .social-buttons a img {
+      width: 24px;
+      height: 24px;
     }
 
     .logo-description, .debate-description {
       font-size: 14px;
-      color: #ddd;
+      color: #ccc;
     }
 
-    .ca-section {
+    .ca-box {
       display: flex;
       justify-content: center;
       align-items: center;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 10px 15px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 10px;
-      margin: 15px auto;
-      max-width: 800px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin: 20px auto;
+      width: 80%;
+      max-width: 500px;
     }
 
-    .ca-text {
+    .ca-box span {
+      margin-right: 10px;
+      font-weight: bold;
       color: #fff;
-      font-size: 18px;
-      margin-right: 15px;
     }
 
-    .ca-button {
+    .ca-box button {
+      padding: 10px;
       background: #ff6f61;
       color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
+      border-radius: 5px;
       cursor: pointer;
-      font-size: 16px;
-      transition: transform 0.3s;
-    }
-
-    .ca-button:hover {
-      transform: scale(1.05);
+      font-size: 14px;
     }
 
     canvas {
@@ -176,13 +156,20 @@
   <h1>🎉 mAImAI (Meme + 2AI) 🎉</h1>
   <p class="logo-description">AI MemeCoin Toolkit</p>
   <div class="social-buttons">
-    <a href="https://telegram.org" target="_blank" class="telegram" title="Join us on Telegram"></a>
-    <a href="https://twitter.com" target="_blank" class="x" title="Follow us on X"></a>
-    <a href="https://gitbook.com" target="_blank" class="gitbook" title="Read our GitBook"></a>
+    <a href="https://telegram.org" target="_blank" title="Join us on Telegram">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+    </a>
+    <a href="https://twitter.com" target="_blank" title="Follow us on Twitter">
+      <img src="https://abs.twimg.com/icons/apple-touch-icon-192x192.png" alt="Twitter">
+    </a>
+    <a href="https://gitbook.com" target="_blank" title="Read our GitBook">
+      📄
+    </a>
   </div>
-  <div class="ca-section">
-    <span class="ca-text">ca: TBA</span>
-    <button class="ca-button" onclick="copyCA()">Copy</button>
+  <div class="ca-box">
+    <span>CA:</span>
+    <span>GivpgArpEbW8F46TYoGZzJvY2AtCGiQBg5Lf4oQVVgBh</span>
+    <button onclick="navigator.clipboard.writeText('GivpgArpEbW8F46TYoGZzJvY2AtCGiQBg5Lf4oQVVgBh')">Copy</button>
   </div>
   <div class="container">
     <div class="section">
@@ -205,7 +192,7 @@
 
     <div class="premium-section">
       <h2>Premium Features</h2>
-      <p><strong>Cost:</strong> 500 $mAImAI- Coming Soon</p>
+      <p><strong>Cost:</strong> 500 $MEMEAI - Coming Soon</p>
       <button class="disabled-button">🗺️ Generate a Roadmap</button>
       <button class="disabled-button">📊 Generate the Tokenomics</button>
       <button class="disabled-button">📄 Generate a Whitepaper</button>
@@ -221,24 +208,33 @@
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    const colors = ['#ff6f61', '#6fbf73', '#4fc3f7'];
+    const glitchColors = ['#ff6f61', '#6fbf73', '#4fc3f7', '#ffffff', '#000000'];
 
-    function drawCircles(x, y) {
-      for (let i = 0; i < 10; i++) {
-        ctx.beginPath();
-        ctx.arc(x, y, i * 10, 0, Math.PI * 2, false);
-        ctx.strokeStyle = colors[i % colors.length];
-        ctx.stroke();
+    function createGlitch(x, y) {
+      for (let i = 0; i < 5; i++) {
+        const width = Math.random() * 40 + 10;
+        const height = Math.random() * 10 + 5;
+        const offsetX = (Math.random() - 0.5) * 20;
+        const offsetY = (Math.random() - 0.5) * 20;
+
+        ctx.fillStyle = glitchColors[Math.floor(Math.random() * glitchColors.length)];
+        ctx.fillRect(x + offsetX, y + offsetY, width, height);
       }
     }
 
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
     window.addEventListener('mousemove', (event) => {
-      drawCircles(event.clientX, event.clientY);
+      clearCanvas();
+      createGlitch(event.clientX, event.clientY);
     });
 
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      clearCanvas();
     });
 
     async function startDebate() {
@@ -357,13 +353,6 @@
         console.error("Error generating logo:", error);
         logoOutput.innerHTML = `<p style="color: red;">Error generating the logo. Please try again later or check your API key and network connection.</p>`;
       }
-    }
-
-    function copyCA() {
-      const caText = "GivpgArpEbW8F46TYoGZzJvY2AtCGiQBg5Lf4oQVVgBh";
-      navigator.clipboard.writeText(caText).then(() => {
-        alert("Smart Contract Address copied to clipboard!");
-      });
     }
   </script>
 </body>
